@@ -1,9 +1,12 @@
 import React from 'react';
+import {useContext} from 'react';
 import {Text, SafeAreaView, StyleSheet, View, FlatList} from 'react-native';
+import {AppContext} from '../contexts';
 
-function PostDetails(props) {
-  const {navigation, route, posts, users, comments: allComments} = props;
+export function PostDetails(props) {
+  const {navigation, route} = props;
   const {postId} = route.params;
+  const {posts, users, comments: allComments} = useContext(AppContext);
   const post = posts.find(({id}) => id === postId);
   const user = users.find(({id}) => id === post.userId);
   const comments = allComments.filter(comment => comment.postId === postId);
@@ -16,7 +19,6 @@ function PostDetails(props) {
         onPress={() => navigateToUserDetails(user.id)}>
         {user.username} ({user.name})
       </Text>
-      <Text style={styles.body}>{post.body}</Text>
       <View style={styles.commentContainer}>
         <Text style={styles.title}>Comments</Text>
         <FlatList
@@ -53,10 +55,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     padding: 8,
   },
-  body: {
-    padding: 8,
-    textAlign: 'justify',
-  },
   username: {
     fontWeight: 'bold',
     padding: 8,
@@ -76,5 +74,3 @@ const styles = StyleSheet.create({
     paddingVertical: 2,
   },
 });
-
-export default PostDetails;

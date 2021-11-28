@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {useContext} from 'react';
 import {
   View,
   Text,
@@ -9,10 +10,12 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import {useDebounce} from '../utils/hooks';
+import {AppContext} from '../contexts';
+import {useDebounce} from '../utils';
 
-function UserList(props) {
-  const {navigation, users} = props;
+export function UserList(props) {
+  const {navigation} = props;
+  const {users} = useContext(AppContext);
   const [searchTerm, setSearchTerm] = useState('');
   const [results, setResults] = useState([]);
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
@@ -107,5 +110,3 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
 });
-
-export default UserList;

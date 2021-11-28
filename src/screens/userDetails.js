@@ -1,9 +1,12 @@
 import React from 'react';
+import {useContext} from 'react';
 import {Text, SafeAreaView, StyleSheet, View} from 'react-native';
+import {AppContext} from '../contexts';
 
-function UserDetails(props) {
-  const {route, users} = props;
+export function UserDetails(props) {
+  const {route} = props;
   const {userId} = route.params;
+  const {users} = useContext(AppContext);
   const user = users.find(({id}) => id === userId);
 
   return (
@@ -46,5 +49,3 @@ const styles = StyleSheet.create({
     fontWeight: 'normal',
   },
 });
-
-export default UserDetails;
