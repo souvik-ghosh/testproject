@@ -1,5 +1,4 @@
 import React from 'react';
-import {useContext} from 'react';
 import {
   View,
   Text,
@@ -9,11 +8,11 @@ import {
   StatusBar,
   TouchableOpacity,
 } from 'react-native';
-import {AppContext} from '../contexts';
+import {useAppContext} from '../contexts';
 
 export function PostList(props) {
   const {navigation} = props;
-  const {posts, users} = useContext(AppContext);
+  const {posts, users} = useAppContext();
 
   return (
     <SafeAreaView style={styles.container}>

@@ -1,12 +1,11 @@
 import React from 'react';
-import {useContext} from 'react';
 import {Text, SafeAreaView, StyleSheet, View, FlatList} from 'react-native';
-import {AppContext} from '../contexts';
+import {useAppContext} from '../contexts';
 
 export function PostDetails(props) {
   const {navigation, route} = props;
   const {postId} = route.params;
-  const {posts, users, comments: allComments} = useContext(AppContext);
+  const {posts, users, comments: allComments} = useAppContext();
   const post = posts.find(({id}) => id === postId);
   const user = users.find(({id}) => id === post.userId);
   const comments = allComments.filter(comment => comment.postId === postId);
