@@ -3,24 +3,20 @@ const baseUrl = 'https://jsonplaceholder.typicode.com';
 export const get = async endpoint => {
   try {
     const response = await fetch(baseUrl + endpoint);
-    const json = await response.json();
-    return json;
+    return await response.json();
   } catch (error) {
     console.error(error);
   }
 };
 
 export const getPosts = async () => {
-  const response = await get('/posts');
-  return response;
+  return await get('/posts');
 };
 
 export const getUsers = async () => {
-  const response = await get('/users');
-  return response;
+  return await get('/users');
 };
 
 export const getComments = async () => {
-  const response = await get('/comments');
-  return response;
+  return await get('/comments');
 };
