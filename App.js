@@ -58,9 +58,7 @@ function App() {
   );
 
   async function fetchAllData() {
-    await fetchUsers();
-    await fetchPosts();
-    await fetchComments();
+    await Promise.all([fetchUsers(), fetchComments(), fetchPosts()]);
     setLoading(false);
   }
 
